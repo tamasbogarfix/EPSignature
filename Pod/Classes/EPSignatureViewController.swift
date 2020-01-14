@@ -33,12 +33,7 @@ open class EPSignatureViewController: UIViewController {
     open weak var signatureDelegate: EPSignatureDelegate?
     open var subtitleText = "Sign Here"
     open var tintColor = UIColor.defaultTintColor()
-    open var customDateString: String? {
-        didSet {
-            lblDate.text = customDateString
-            lblDate.isHidden = false
-        }
-    }
+    open var customDateString: String?
 
     // MARK: - Life cycle methods
     
@@ -61,6 +56,11 @@ open class EPSignatureViewController: UIViewController {
             lblDate.text = dateFormatter.string(from: Date())
         } else {
             lblDate.isHidden = true
+        }
+        
+        if let customDateString = self.customDateString {
+            lblDate.text = customDateString
+            lblDate.isHidden = false
         }
         
         if showsSaveSignatureOption {
